@@ -15,7 +15,6 @@ void Create(int* c, const int size, const int Low, const int High) {
 
 void Print(int* c, const int size) {
     for (int i = 0; i < size; i++)
-
         cout << setw(4) << c[i];
     cout << endl;
 }
@@ -23,20 +22,24 @@ void Print(int* c, const int size) {
 int Count(int* c, const int size){
         int count = 0;
         for (int i = 0; i < size; i++) {
-            if ((c[i] % 2 != 0) && (i != 13)) {
+            if (!(c[i] % 2 == 0 || i % 13 == 0)) {
                 count++;
-            }
-            else {
-                c[i] = 0;
             }
         }
         return count;
+
+}
+
+void Zero(int* c, const int size) {
+    for (int i = 0; i < size; i++)
+        if (!(c[i] % 2 == 0 || i % 13 == 0))
+            c[i] = 0;
 }
 
 int Sum(int* c, const int size) {
       int S = 0;
     for (int i = 0; i < size; i++)
-        if ((c[i] % 2 != 0) && (i != 13))
+        if (!(c[i] % 2 == 0 || i % 13 == 0))
             S += c[i];
     return S; 
 }
@@ -54,6 +57,7 @@ int main() {
     Print(c, n);
     cout << "Sum = " << Sum(c, n) << endl;
     cout << "Count = " << Count(c, n) << endl;
+    Zero(c, n);
     Print(c, n);
 
     return 0;
